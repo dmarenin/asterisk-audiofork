@@ -482,6 +482,12 @@ static void *audiofork_thread(void *obj)
 
   ast_verb(2, "Begin AudioFork Recording %s\n", audiofork->name);
 
+  //dmarenin
+  uint64_t len = strlen((const char *)audiofork->name);
+
+  ast_websocket_write(audiofork->websocket, AST_WEBSOCKET_OPCODE_TEXT, audiofork->name, len);
+  //dmarenin
+
   //fs = &audiofork->audiofork_ds->fs;
 
   ast_mutex_lock(&audiofork->audiofork_ds->lock);
